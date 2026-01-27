@@ -40,7 +40,7 @@
  */
 - (IBAction)setToComputerTime:(id)sender
 {
-	[self setJukeboxTime:[NSCalendarDate calendarDate]];
+	[self setJukeboxTime:[NSDate date]];
 	[timeText setObjectValue:[self jukeboxTime]];
 }
 
@@ -109,7 +109,7 @@
 		return [[[NJBTransactionResult alloc] initWithSuccess:NO] autorelease];
 	if (![theNJB isMTPDevice])
 	{
-		NSCalendarDate *date = [theNJB jukeboxTime];
+		NSDate *date = [theNJB jukeboxTime];
 		if (date == nil)
 			return [[[NJBTransactionResult alloc] initWithSuccess:NO] autorelease];
 		[self setJukeboxTime:date];
@@ -136,7 +136,7 @@
 	ownerString = newOwnerString;
 }
 
-- (void)setJukeboxTime:(NSCalendarDate *)newJukeboxTime
+- (void)setJukeboxTime:(NSDate *)newJukeboxTime
 {
 	jukeboxTimeInterval = [newJukeboxTime timeIntervalSinceNow];
 }
@@ -153,9 +153,9 @@
 	[self startTimer];
 }
 
-- (NSCalendarDate *)jukeboxTime
+- (NSDate *)jukeboxTime
 {
-	return [NSCalendarDate dateWithTimeIntervalSinceNow:jukeboxTimeInterval];
+	return [NSDate dateWithTimeIntervalSinceNow:jukeboxTimeInterval];
 }
 
 - (void)NJBDisconnected:(NSNotification *)note
@@ -206,7 +206,7 @@
 - (IBAction)updateJukebox:(id)sender
 {
 	NSString *owner = [ownerText stringValue];
-	NSCalendarDate *time = [timeText objectValue];
+	NSDate *time = [timeText objectValue];
 	
 	NJBQueueItem *setOwner = [[NJBQueueItem alloc] initWithTarget:theNJB withSelector:@selector(setOwnerString:)
 																												withObject:owner];

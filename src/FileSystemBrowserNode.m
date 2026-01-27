@@ -64,7 +64,7 @@
 
 - (NSArray *)subNodes {
     NSString       *subNodePath = nil;
-		NSArray				 *subNodePathsArray = [[NSFileManager defaultManager] directoryContentsAtPath: [self absolutePath]];
+		NSArray				 *subNodePathsArray = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:[self absolutePath] error:nil];
 		
 		// sort them
 		subNodePathsArray = [subNodePathsArray sortedArrayUsingSelector:@selector(caseInsensitiveCompare:)];
@@ -91,7 +91,7 @@
 }
 
 - (BOOL)isLink {
-    NSDictionary *fileAttributes = [[NSFileManager defaultManager] fileAttributesAtPath:[self absolutePath] traverseLink:NO];
+    NSDictionary *fileAttributes = [[NSFileManager defaultManager] attributesOfItemAtPath:[self absolutePath] error:nil];
     return [[fileAttributes objectForKey:NSFileType] isEqualToString:NSFileTypeSymbolicLink];
 }
 

@@ -18,6 +18,8 @@
 	<string>xnjb</string>
 	<key>CFBundleVersion</key>
 	<string>1.5.10</string>
+	<key>LSMinimumSystemVersion</key>
+	<string>26.0</string>
 	<key>NSMainNibFile</key>
 	<string>MainMenu</string>
 	<key>NSPrincipalClass</key>

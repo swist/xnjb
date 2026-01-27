@@ -466,11 +466,14 @@
  */
 - (void)deleteFromNJB
 {
-	int result = NSRunAlertPanel(NSLocalizedString(@"File Deletion", nil),
-															 NSLocalizedString(@"Are you sure you want to delete the selected items off the NJB?", nil),
-															 NSLocalizedString(@"No", nil), 
-															 NSLocalizedString(@"Yes", nil), nil);
-	if (result == NSAlertDefaultReturn)
+	NSAlert *alert = [[NSAlert alloc] init];
+	[alert setMessageText:NSLocalizedString(@"File Deletion", nil)];
+	[alert setInformativeText:NSLocalizedString(@"Are you sure you want to delete the selected items off the NJB?", nil)];
+	[alert addButtonWithTitle:NSLocalizedString(@"No", nil)];
+	[alert addButtonWithTitle:NSLocalizedString(@"Yes", nil)];
+	NSModalResponse result = [alert runModal];
+	[alert release];
+	if (result == NSAlertFirstButtonReturn)
 		return;
 	
 	/* get array of items to be deleted

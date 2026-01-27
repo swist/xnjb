@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 46;
+	objectVersion = 77;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -348,9 +348,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = SDKs/MacOSX10.3.9.sdk/System/Library/Frameworks/Cocoa.framework; sourceTree = DEVELOPER_DIR; };
-		29B97324FDCFA39411CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = SDKs/MacOSX10.3.9.sdk/System/Library/Frameworks/AppKit.framework; sourceTree = DEVELOPER_DIR; };
-		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = SDKs/MacOSX10.3.9.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		29B97324FDCFA39411CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
+		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		32CA4F630368D1EE00C91783 /* XNJB_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XNJB_Prefix.pch; sourceTree = "<group>"; };
 		7919527D087544700012F63B /* Directory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Directory.h; path = src/Directory.h; sourceTree = "<group>"; };
 		7919527E087544700012F63B /* Directory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Directory.m; path = src/Directory.m; sourceTree = "<group>"; };
@@ -401,7 +401,7 @@
 		792E2CD006A844B90042FDB0 /* DrawerController.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = DrawerController.m; path = src/DrawerController.m; sourceTree = "<group>"; };
 		79342A2906AFC98E009F3AFC /* MyNSWindow.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = MyNSWindow.h; path = src/MyNSWindow.h; sourceTree = "<group>"; };
 		79342A2A06AFC98E009F3AFC /* MyNSWindow.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = MyNSWindow.m; path = src/MyNSWindow.m; sourceTree = "<group>"; };
-		7936C0AF06B6C67200C6514A /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = SDKs/MacOSX10.3.9.sdk/System/Library/Frameworks/IOKit.framework; sourceTree = DEVELOPER_DIR; };
+		7936C0AF06B6C67200C6514A /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
 		793B6DF008255CCC00A43F5B /* libusb.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libusb.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		793B6F230825671000A43F5B /* libusb.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libusb.a; path = build/libusb.a; sourceTree = "<group>"; };
 		7940A0E507C8EEE3004CF5F5 /* DuplicateItemsTab.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DuplicateItemsTab.h; path = src/DuplicateItemsTab.h; sourceTree = "<group>"; };
@@ -412,7 +412,7 @@
 		7944828106DA4A230085EF5E /* SettingsTab.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = SettingsTab.m; path = src/SettingsTab.m; sourceTree = "<group>"; };
 		79449FCF06B2E743003DE3E4 /* StatusDisplayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StatusDisplayer.h; path = src/StatusDisplayer.h; sourceTree = "<group>"; };
 		79449FD006B2E743003DE3E4 /* StatusDisplayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StatusDisplayer.m; path = src/StatusDisplayer.m; sourceTree = "<group>"; };
-		7948DB940AB0522400ABAFEF /* libiconv.2.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; name = libiconv.2.dylib; path = SDKs/MacOSX10.3.9.sdk/usr/lib/libiconv.2.dylib; sourceTree = DEVELOPER_DIR; };
+		7948DB940AB0522400ABAFEF /* libiconv.2.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; name = libiconv.2.dylib; path = usr/lib/libiconv.2.dylib; sourceTree = SDKROOT; };
 		794A157606AD2337009B4EC0 /* FileSystemBrowserNode.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = FileSystemBrowserNode.h; path = src/FileSystemBrowserNode.h; sourceTree = "<group>"; };
 		794A157706AD2337009B4EC0 /* FileSystemBrowserNode.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = FileSystemBrowserNode.m; path = src/FileSystemBrowserNode.m; sourceTree = "<group>"; };
 		794A15AA06AD2421009B4EC0 /* FileSystemBrowserCell.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = FileSystemBrowserCell.h; path = src/FileSystemBrowserCell.h; sourceTree = "<group>"; };
@@ -450,7 +450,7 @@
 		797F80FF0AA496AB0085146E /* ptp.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = ptp.h; path = libmtp/src/ptp.h; sourceTree = "<group>"; };
 		797F81000AA496AB0085146E /* unicode.c */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.c; name = unicode.c; path = libmtp/src/unicode.c; sourceTree = "<group>"; };
 		797F81010AA496AB0085146E /* unicode.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = unicode.h; path = libmtp/src/unicode.h; sourceTree = "<group>"; };
-		7987CE0706F5D428000FF83F /* libz.1.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; name = libz.1.dylib; path = SDKs/MacOSX10.3.9.sdk/usr/lib/libz.1.dylib; sourceTree = DEVELOPER_DIR; };
+		7987CE0706F5D428000FF83F /* libz.1.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; name = libz.1.dylib; path = usr/lib/libz.1.dylib; sourceTree = SDKROOT; };
 		79888A5406AE95500015D6D7 /* NJB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NJB.h; path = src/NJB.h; sourceTree = "<group>"; };
 		79888A5506AE95500015D6D7 /* NJB.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NJB.m; path = src/NJB.m; sourceTree = "<group>"; };
 		79888C1E06AEA7390015D6D7 /* ID3Tagger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ID3Tagger.h; path = src/ID3Tagger.h; sourceTree = "<group>"; };
@@ -1566,10 +1566,10 @@
 		29B97313FDCFA39411CA2CEA /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0410;
+				LastUpgradeCheck = 2620;
 			};
 			buildConfigurationList = 79486343085DDBD7006A5794 /* Build configuration list for PBXProject "XNJB" */;
-			compatibilityVersion = "Xcode 3.2";
+			compatibilityVersion = "Xcode 26.0";
 			developmentRegion = English;
 			hasScannedForEncodings = 1;
 			knownRegions = (
@@ -1896,19 +1896,19 @@
 		793A83FF0D2FB03C00076F70 /* Development */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				ARCHS = "$(ARCHS_STANDARD)";
 				COPY_PHASE_STRIP = NO;
-				DEBUG_INFORMATION_FORMAT = stabs;
+				DEBUG_INFORMATION_FORMAT = dwarf;
 				GCC_INLINES_ARE_PRIVATE_EXTERN = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_SYMBOLS_PRIVATE_EXTERN = YES;
-				GCC_VERSION = 4.2;
+				GCC_VERSION = "";
 				LIBRARY_STYLE = STATIC;
-				MACOSX_DEPLOYMENT_TARGET = 10.6;
-				"MACOSX_DEPLOYMENT_TARGET[arch=i386]" = 10.6;
+				MACOSX_DEPLOYMENT_TARGET = 26.0;
+
 				OTHER_CFLAGS = "";
-				SDKROOT = macosx10.6;
-				"SDKROOT[arch=*]" = macosx10.6;
+				SDKROOT = macosx;
+
 				STRIP_INSTALLED_PRODUCT = NO;
 			};
 			name = Development;
@@ -1916,7 +1916,7 @@
 		793A84000D2FB03C00076F70 /* Development */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				ARCHS = "$(ARCHS_STANDARD)";
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(FRAMEWORK_SEARCH_PATHS)",
@@ -1924,9 +1924,9 @@
 				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_TRIGRAPHS = NO;
-				GCC_FORCE_CPU_SUBTYPE_ALL = NO;
+
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
-				GCC_MODEL_TUNING = G5;
+
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = XNJB_Prefix.pch;
@@ -1943,12 +1943,12 @@
 					"\"$(SRCROOT)/build/Development\"",
 				);
 				LIBRARY_STYLE = STATIC;
-				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				MACOSX_DEPLOYMENT_TARGET = 26.0;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_CFLAGS = "-DHAVE_ICONV";
 				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = XNJB;
-				SDKROOT = macosx10.6;
+				SDKROOT = macosx;
 				SECTORDER_FLAGS = "";
 				USER_HEADER_SEARCH_PATHS = "\"$(SRCROOT)/build/Deployment Debug\" \"$(SRCROOT)/build/Development\"";
 				WARNING_CFLAGS = (
@@ -1964,24 +1964,24 @@
 		793A84010D2FB03C00076F70 /* Development */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				ARCHS = "$(ARCHS_STANDARD)";
 				COPY_PHASE_STRIP = NO;
 				GCC_ENABLE_SYMBOL_SEPARATION = YES;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
 				GCC_INLINES_ARE_PRIVATE_EXTERN = YES;
-				GCC_MODEL_TUNING = G5;
+
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_SYMBOLS_PRIVATE_EXTERN = YES;
 				GCC_VERSION = "";
 				INSTALL_PATH = "$(HOME)/lib";
 				LIBRARY_STYLE = STATIC;
-				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				MACOSX_DEPLOYMENT_TARGET = 26.0;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = "";
 				OTHER_REZFLAGS = "";
 				PRODUCT_NAME = usb;
-				SDKROOT = macosx10.6;
+				SDKROOT = macosx;
 				SECTORDER_FLAGS = "";
 				WARNING_CFLAGS = (
 					"-Wmost",
@@ -2000,7 +2000,7 @@
 				GCC_ENABLE_SYMBOL_SEPARATION = YES;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				GCC_INLINES_ARE_PRIVATE_EXTERN = YES;
-				GCC_MODEL_TUNING = G5;
+
 				GCC_SYMBOLS_PRIVATE_EXTERN = YES;
 				GCC_VERSION = "";
 				INSTALL_PATH = "$(HOME)/lib";
@@ -2024,7 +2024,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
-				GCC_MODEL_TUNING = G5;
+
 				GCC_VERSION = "";
 				INSTALL_PATH = "$(HOME)/lib";
 				LIBRARY_STYLE = STATIC;
@@ -2054,7 +2054,7 @@
 				GCC_DYNAMIC_NO_PIC = YES;
 				GCC_ENABLE_TRIGRAPHS = NO;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
-				GCC_MODEL_TUNING = G5;
+
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = XNJB_Prefix.pch;
@@ -2071,7 +2071,7 @@
 					"\"$(SRCROOT)/build/Development\"",
 				);
 				LIBRARY_STYLE = STATIC;
-				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				MACOSX_DEPLOYMENT_TARGET = 26.0;
 				OTHER_CFLAGS = "-DHAVE_ICONV";
 				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = XNJB;
@@ -2113,7 +2113,7 @@
 					"\"$(SRCROOT)/build/Deployment Debug\"",
 					"\"$(SRCROOT)/build/Development\"",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				MACOSX_DEPLOYMENT_TARGET = 26.0;
 				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = XNJB;
@@ -2131,25 +2131,25 @@
 		79486345085DDBD7006A5794 /* Deployment */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				ARCHS = "$(ARCHS_STANDARD)";
 				COPY_PHASE_STRIP = NO;
 				DEAD_CODE_STRIPPING = YES;
-				DEBUG_INFORMATION_FORMAT = stabs;
+				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEPLOYMENT_POSTPROCESSING = YES;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
 				GCC_INLINES_ARE_PRIVATE_EXTERN = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_SYMBOLS_PRIVATE_EXTERN = YES;
-				GCC_VERSION = 4.2;
+				GCC_VERSION = "";
 				GCC_WARN_TYPECHECK_CALLS_TO_PRINTF = YES;
 				HEADER_SEARCH_PATHS = "";
 				LIBRARY_STYLE = STATIC;
-				MACOSX_DEPLOYMENT_TARGET = 10.6;
-				"MACOSX_DEPLOYMENT_TARGET[arch=*]" = 10.6;
+				MACOSX_DEPLOYMENT_TARGET = 26.0;
+
 				OTHER_CFLAGS = "";
 				PRECOMPS_INCLUDE_HEADERS_FROM_BUILT_PRODUCTS_DIR = YES;
-				SDKROOT = macosx10.6;
-				"SDKROOT[arch=*]" = macosx10.6;
+				SDKROOT = macosx;
+
 				STRIP_INSTALLED_PRODUCT = YES;
 			};
 			name = Deployment;
@@ -2157,8 +2157,8 @@
 		79486346085DDBD7006A5794 /* Default */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				MACOSX_DEPLOYMENT_TARGET = 10.6;
-				SDKROOT = macosx10.6;
+				MACOSX_DEPLOYMENT_TARGET = 26.0;
+				SDKROOT = macosx;
 			};
 			name = Default;
 		};
@@ -2169,13 +2169,13 @@
 				GCC_ENABLE_SYMBOL_SEPARATION = YES;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
 				GCC_INLINES_ARE_PRIVATE_EXTERN = YES;
-				GCC_MODEL_TUNING = G5;
+
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_SYMBOLS_PRIVATE_EXTERN = YES;
 				GCC_VERSION = "";
 				INSTALL_PATH = "$(HOME)/lib";
 				LIBRARY_STYLE = STATIC;
-				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				MACOSX_DEPLOYMENT_TARGET = 26.0;
 				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = "";
 				OTHER_REZFLAGS = "";
@@ -2200,7 +2200,7 @@
 				);
 				GCC_ENABLE_TRIGRAPHS = NO;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
-				GCC_MODEL_TUNING = G5;
+
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = XNJB_Prefix.pch;
 				GCC_VERSION = "";
@@ -2215,7 +2215,7 @@
 					"\"$(SRCROOT)/build/Development\"",
 				);
 				LIBRARY_STYLE = STATIC;
-				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				MACOSX_DEPLOYMENT_TARGET = 26.0;
 				OTHER_CFLAGS = (
 					"-DXNJB_LIBMTP_DEBUG",
 					"-DHAVE_ICONV",
@@ -2237,19 +2237,19 @@
 		79553DD90C52270700ACA792 /* Deployment Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				ARCHS = "$(ARCHS_STANDARD)";
 				COPY_PHASE_STRIP = NO;
-				DEBUG_INFORMATION_FORMAT = stabs;
-				GCC_FAST_OBJC_DISPATCH = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+
 				GCC_INLINES_ARE_PRIVATE_EXTERN = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_SYMBOLS_PRIVATE_EXTERN = YES;
-				GCC_VERSION = 4.2;
+				GCC_VERSION = "";
 				LIBRARY_STYLE = STATIC;
-				MACOSX_DEPLOYMENT_TARGET = 10.6;
-				"MACOSX_DEPLOYMENT_TARGET[arch=*]" = 10.6;
-				SDKROOT = macosx10.6;
-				"SDKROOT[arch=*]" = macosx10.6;
+				MACOSX_DEPLOYMENT_TARGET = 26.0;
+
+				SDKROOT = macosx;
+
 				STRIP_INSTALLED_PRODUCT = NO;
 			};
 			name = "Deployment Debug";
@@ -2263,7 +2263,7 @@
 				GCC_ENABLE_SYMBOL_SEPARATION = YES;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				GCC_INLINES_ARE_PRIVATE_EXTERN = YES;
-				GCC_MODEL_TUNING = G5;
+
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/Carbon.framework/Headers/Carbon.h";
 				GCC_SYMBOLS_PRIVATE_EXTERN = YES;
@@ -2295,7 +2295,7 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				GCC_ENABLE_SYMBOL_SEPARATION = YES;
 				GCC_INLINES_ARE_PRIVATE_EXTERN = YES;
-				GCC_MODEL_TUNING = G5;
+
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/Carbon.framework/Headers/Carbon.h";
 				GCC_SYMBOLS_PRIVATE_EXTERN = YES;
@@ -2324,13 +2324,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
-				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				ARCHS = "$(ARCHS_STANDARD)";
 				COPY_PHASE_STRIP = NO;
 				EXECUTABLE_PREFIX = lib;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_SYMBOL_SEPARATION = YES;
 				GCC_INLINES_ARE_PRIVATE_EXTERN = YES;
-				GCC_MODEL_TUNING = G5;
+
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/Carbon.framework/Headers/Carbon.h";
@@ -2350,12 +2350,12 @@
 					"/usr/local/Qt4.5/mkspecs/macx-xcode",
 				);
 				INSTALL_PATH = /usr/local/lib;
-				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				MACOSX_DEPLOYMENT_TARGET = 26.0;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_CFLAGS = "-DWITH_MP4";
 				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = taglib;
-				SDKROOT = macosx10.6;
+				SDKROOT = macosx;
 			};
 			name = Development;
 		};
@@ -2363,7 +2363,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				GCC_MODEL_TUNING = G5;
+
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/Carbon.framework/Headers/Carbon.h";
 				GCC_VERSION = "";

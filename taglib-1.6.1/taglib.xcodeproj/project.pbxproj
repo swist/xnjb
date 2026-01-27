@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 42;
+	objectVersion = 77;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -724,7 +724,7 @@
 		91B15E841AA80083484172DE /* Project object */ = {
 			isa = PBXProject;
 			buildConfigurationList = 2A951308CDB28F104D0A4BD2 /* Build configuration list for PBXProject "taglib" */;
-			compatibilityVersion = "Xcode 2.4";
+			compatibilityVersion = "Xcode 26.0";
 			hasScannedForEncodings = 1;
 			mainGroup = 05596AB53D8D521C69802C27 /* taglib */;
 			productRefGroup = 797409770F6BFDE10075149C /* Products */;
@@ -882,7 +882,7 @@
 					/Library/Frameworks,
 					/System/Library/Frameworks/,
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.3;
+				MACOSX_DEPLOYMENT_TARGET = 26.0;
 				OTHER_CFLAGS = (
 					"-pipe",
 					"-g",
@@ -961,7 +961,7 @@
 					/Library/Frameworks,
 					/System/Library/Frameworks/,
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.3;
+				MACOSX_DEPLOYMENT_TARGET = 26.0;
 				OTHER_CFLAGS = (
 					"-pipe",
 					"-g",
@@ -1038,7 +1038,7 @@
 					/Library/Frameworks,
 					/System/Library/Frameworks/,
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.3;
+				MACOSX_DEPLOYMENT_TARGET = 26.0;
 				OTHER_CFLAGS = (
 					"-pipe",
 					"-g",

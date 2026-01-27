@@ -356,12 +356,12 @@ io_iterator_t deviceAddedIter;
   NSString *filename = @"/Users/richard/njb/opl-crash-20081027/session-with-usb-bulk-debugging.txt";
 
   NSFileManager *fileManager = [[NSFileManager alloc] init];
-	NSDictionary *fileAttributes = [fileManager fileAttributesAtPath:filename traverseLink:YES];
+	NSDictionary *fileAttributes = [fileManager attributesOfItemAtPath:filename error:nil];
   unsigned int encodedlen = [[fileAttributes objectForKey:NSFileSize] unsignedIntValue];
   unsigned int len = encodedlen / 2;
   char *data = malloc(len);
   
-  int fd = open([filename cString], O_RDONLY);
+  int fd = open([filename UTF8String], O_RDONLY);
   
   char cur[2];
   int i = 0;
@@ -636,10 +636,16 @@ io_iterator_t deviceAddedIter;
 			{
 				NSString *nsTimeString = [NSString stringWithUTF8String:track->date];
 				// the Creative devices don't send seconds (but they do send tenths of a second!)
-				NSCalendarDate *date = [[NSCalendarDate alloc] initWithString:nsTimeString calendarFormat:@"%Y%m%dT%H%M"];
-			
-				[myTrack setYear:[date yearOfCommonEra]];
-        [date release];
+				NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+				[dateFormatter setDateFormat:@"yyyyMMdd'T'HHmm"];
+				NSDate *date = [dateFormatter dateFromString:nsTimeString];
+				[dateFormatter release];
+				if (date != nil)
+				{
+					NSCalendar *calendar = [NSCalendar currentCalendar];
+					NSDateComponents *components = [calendar components:NSCalendarUnitYear fromDate:date];
+					[myTrack setYear:(unsigned int)[components year]];
+				}
 			}
 			
 			[cachedTrackList addObject:myTrack];
@@ -1384,50 +1390,32 @@ io_iterator_t deviceAddedIter;
 	}
 }
 
-- (NSCalendarDate *)jukeboxTime
+- (NSDate *)jukeboxTime
 {
 	if (!mtpDevice)
 	{
 		njb_time_t *time = NJB_Get_Time(njb);
 		if (time == NULL)
 			return nil;
-	
+
 		// assume njb time is our timezone
-		NSCalendarDate *date = [NSCalendarDate dateWithYear:time->year month:time->month day:time->day hour:time->hours minute:time->minutes second:time->seconds
-																							 timeZone:[NSTimeZone localTimeZone]];
+		NSCalendar *calendar = [NSCalendar currentCalendar];
+		[calendar setTimeZone:[NSTimeZone localTimeZone]];
+		NSDateComponents *components = [[NSDateComponents alloc] init];
+		[components setYear:time->year];
+		[components setMonth:time->month];
+		[components setDay:time->day];
+		[components setHour:time->hours];
+		[components setMinute:time->minutes];
+		[components setSecond:time->seconds];
+		NSDate *date = [calendar dateFromComponents:components];
+		[components release];
 		return date;
 	}
 	else
 	{
-		/*char *secureTime = NULL;
-		if (LIBMTP_Get_Secure_Time(device, &secureTime) != 0)
-			return nil;
-		
-		if (secureTime == NULL)
-			return nil;
-		
-		NSLog(@"Secure time: %s", secureTime);
-		
-		free(secureTime);*/
-		// TODO
-		/*
-		if (!ptp_property_issupported(&params, PTP_DPC_DateTime))
-			return nil;
-		
-		char *timeString = NULL;
-		if (ptp_getdevicepropvalue(&params, PTP_DPC_DateTime, (void **)&timeString, PTP_DTC_STR) != PTP_RC_OK)
-			return nil;
-		
-		if (timeString != NULL)
-		{
-			NSString *nsTimeString = [NSString stringWithCString:timeString];
-			free(timeString);
-			NSCalendarDate *date = [[NSCalendarDate alloc] initWithString:nsTimeString calendarFormat:@"%Y%m%dT%H%M%S%z"];
-		
-			return [date autorelease];
-		}
-		else*/
-			return nil;
+		// TODO: MTP time not yet implemented
+		return nil;
 	}
 }
 
@@ -1486,17 +1474,20 @@ io_iterator_t deviceAddedIter;
 		return [[[NJBTransactionResult alloc] initWithSuccess:NO] autorelease];
 	
 	njb_time_t time;
-	
-	NSTimeInterval jukeboxTimeInterval = [timeIntervalSinceNow doubleValue];
-	NSCalendarDate *date = [NSCalendarDate dateWithTimeIntervalSinceNow:jukeboxTimeInterval];
-	
-	time.year = [date yearOfCommonEra];
-	time.month = [date monthOfYear];
-	time.day = [date dayOfMonth];
-	time.weekday = [date dayOfWeek];
-	time.hours = [date hourOfDay];
-	time.minutes = [date minuteOfHour];
-	time.seconds = [date secondOfMinute];
+
+	NSTimeInterval jukeboxTimeIntervalVal = [timeIntervalSinceNow doubleValue];
+	NSDate *date = [NSDate dateWithTimeIntervalSinceNow:jukeboxTimeIntervalVal];
+	NSCalendar *calendar = [NSCalendar currentCalendar];
+	unsigned unitFlags = NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay | NSCalendarUnitWeekday | NSCalendarUnitHour | NSCalendarUnitMinute | NSCalendarUnitSecond;
+	NSDateComponents *components = [calendar components:unitFlags fromDate:date];
+
+	time.year = (int)[components year];
+	time.month = (int)[components month];
+	time.day = (int)[components day];
+	time.weekday = (int)[components weekday] - 1;
+	time.hours = (int)[components hour];
+	time.minutes = (int)[components minute];
+	time.seconds = (int)[components second];
 	
 	if (NJB_Set_Time(njb, &time) == -1)
 	{
@@ -2471,21 +2462,19 @@ int mtp_progress(uint64_t const sent, uint64_t const total, void const * const d
         thumbnailPoint.x = (targetWidth - scaledWidth) * 0.5;
     }
     
-    newImage = [[NSImage alloc] initWithSize:targetSize];
-    
-    [newImage lockFocus];
-    
+    newImage = [NSImage imageWithSize:targetSize flipped:NO drawingHandler:^(NSRect dstRect) {
       NSRect thumbnailRect;
       thumbnailRect.origin = thumbnailPoint;
       thumbnailRect.size.width = scaledWidth;
       thumbnailRect.size.height = scaledHeight;
-      
+
       [sourceImage drawInRect: thumbnailRect
                      fromRect: NSZeroRect
-                    operation: NSCompositeSourceOver
+                    operation: NSCompositingOperationSourceOver
                      fraction: 1.0];
-    
-    [newImage unlockFocus];
+      return YES;
+    }];
+    [newImage retain];
   }
   
   return [newImage autorelease];

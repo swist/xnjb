@@ -18,14 +18,14 @@
 - (void)registerDragAndDrop
 {
 	// allow drag and drop
-	[self registerForDraggedTypes:[NSArray arrayWithObject:NSFilenamesPboardType]];
-	
+	[self registerForDraggedTypes:[NSArray arrayWithObject:NSPasteboardTypeFileURL]];
+
 	fsBrowser = [[FileSystemBrowser alloc] init];
-	
+
 	allowCopies = YES;
 }
 
-- (unsigned int)draggingEntered:(id <NSDraggingInfo>)sender
+- (NSDragOperation)draggingEntered:(id <NSDraggingInfo>)sender
 {
 	if (!allowCopies)
 		return NSDragOperationNone;
@@ -33,7 +33,7 @@
 		return NSDragOperationCopy;
 }
 
-- (unsigned int)draggingUpdated:(id <NSDraggingInfo>)sender
+- (NSDragOperation)draggingUpdated:(id <NSDraggingInfo>)sender
 {
 	return [self draggingEntered:sender];
 }
@@ -55,19 +55,19 @@
 		return NO;
 	NSMutableArray *filesToCopy = [[NSMutableArray alloc] init];
 	NSPasteboard *pb = [sender draggingPasteboard];
-	if ([[pb types] containsObject:NSFilenamesPboardType])
+	NSArray *fileURLs = [pb readObjectsForClasses:@[[NSURL class]] options:@{NSPasteboardURLReadingFileURLsOnlyKey: @YES}];
+	if (fileURLs != nil)
 	{
-		NSArray *files = [pb propertyListForType:NSFilenamesPboardType];
-		FileSystemBrowserNode *node = nil;
-		NSString *filename;
-		NSEnumerator *fileEnumerator = [files objectEnumerator];
-		while (filename = [fileEnumerator nextObject])
+		NSURL *fileURL;
+		NSEnumerator *fileEnumerator = [fileURLs objectEnumerator];
+		while (fileURL = [fileEnumerator nextObject])
 		{
-			node = [FileSystemBrowserNode nodeWithParent:nil atRelativePath:filename];
+			NSString *filename = [fileURL path];
+			FileSystemBrowserNode *node = [FileSystemBrowserNode nodeWithParent:nil atRelativePath:filename];
 			[fsBrowser addContentsOfNode:node toArray:filesToCopy];
 		}
 	}
-	int count = [filesToCopy count];
+	int count = (int)[filesToCopy count];
 	
 	NSString *filename;
 	NSEnumerator *fileEnumerator = [filesToCopy objectEnumerator];

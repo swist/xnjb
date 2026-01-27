@@ -264,11 +264,14 @@
 		NSLog(@"Error: deleting local files when directory selected!");
 		return;
 	}
-	int result = NSRunAlertPanel(NSLocalizedString(@"File Deletion", nil),
-															 NSLocalizedString(@"Are you sure you want to delete the selected local files?", nil),
-															 NSLocalizedString(@"No", nil),
-															 NSLocalizedString(@"Yes", nil), nil);
-	if (result == NSAlertDefaultReturn)
+	NSAlert *alert = [[NSAlert alloc] init];
+	[alert setMessageText:NSLocalizedString(@"File Deletion", nil)];
+	[alert setInformativeText:NSLocalizedString(@"Are you sure you want to delete the selected local files?", nil)];
+	[alert addButtonWithTitle:NSLocalizedString(@"No", nil)];
+	[alert addButtonWithTitle:NSLocalizedString(@"Yes", nil)];
+	NSModalResponse result = [alert runModal];
+	[alert release];
+	if (result == NSAlertFirstButtonReturn)
 		return;
 	
 	NSFileManager *fileManager = [[NSFileManager alloc] init];
@@ -277,10 +280,14 @@
 	NSString *currentFile;
 	while (currentFile = [enumerator nextObject])
 	{
-		if (![fileManager removeFileAtPath:currentFile handler:nil])
+		if (![fileManager removeItemAtPath:currentFile error:nil])
 		{
-			NSRunAlertPanel(NSLocalizedString(@"File Deletion", nil),
-											[NSString stringWithFormat:NSLocalizedString(@"There was an error deleting file %@.", nil), currentFile], NSLocalizedString(@"OK", nil), nil, nil);
+			NSAlert *errAlert = [[NSAlert alloc] init];
+			[errAlert setMessageText:NSLocalizedString(@"File Deletion", nil)];
+			[errAlert setInformativeText:[NSString stringWithFormat:NSLocalizedString(@"There was an error deleting file %@.", nil), currentFile]];
+			[errAlert addButtonWithTitle:NSLocalizedString(@"OK", nil)];
+			[errAlert runModal];
+			[errAlert release];
 			return;
 		}
 	}
@@ -293,11 +300,14 @@
  */
 - (void)deleteFromNJB
 {
-	int result = NSRunAlertPanel(NSLocalizedString(@"File Deletion", nil),
-															 NSLocalizedString(@"Are you sure you want to delete the selected items off the NJB?", nil),
-															 NSLocalizedString(@"No", nil),
-															 NSLocalizedString(@"Yes", nil), nil);
-	if (result == NSAlertDefaultReturn)
+	NSAlert *delAlert = [[NSAlert alloc] init];
+	[delAlert setMessageText:NSLocalizedString(@"File Deletion", nil)];
+	[delAlert setInformativeText:NSLocalizedString(@"Are you sure you want to delete the selected items off the NJB?", nil)];
+	[delAlert addButtonWithTitle:NSLocalizedString(@"No", nil)];
+	[delAlert addButtonWithTitle:NSLocalizedString(@"Yes", nil)];
+	NSModalResponse result = [delAlert runModal];
+	[delAlert release];
+	if (result == NSAlertFirstButtonReturn)
 		return;
 	
 	/* get array of items to be deleted

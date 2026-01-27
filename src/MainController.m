@@ -220,11 +220,14 @@
 {
 	if (![status isIdle])
 	{
-		int result = NSRunAlertPanel(NSLocalizedString(@"Quit XNJB", nil),
-																 NSLocalizedString(@"There are still items in the queue.  Are you sure you want to quit?  This could crash your NJB and/or XNJB.", nil),
-																 NSLocalizedString(@"No", nil),
-																 NSLocalizedString(@"Yes", nil), nil);
-		if (result == NSAlertDefaultReturn)
+		NSAlert *alert = [[NSAlert alloc] init];
+		[alert setMessageText:NSLocalizedString(@"Quit XNJB", nil)];
+		[alert setInformativeText:NSLocalizedString(@"There are still items in the queue.  Are you sure you want to quit?  This could crash your NJB and/or XNJB.", nil)];
+		[alert addButtonWithTitle:NSLocalizedString(@"No", nil)];
+		[alert addButtonWithTitle:NSLocalizedString(@"Yes", nil)];
+		NSModalResponse result = [alert runModal];
+		[alert release];
+		if (result == NSAlertFirstButtonReturn)
 			return NO;
 	}
 	return YES;
@@ -351,11 +354,14 @@
 	}
 	// ask if they really want to try to connect if appears already connected
 	// we don't get told when they pull the plug out so maybe we're not, let's ask...
-	int result = NSRunAlertPanel(NSLocalizedString(@"Connect to NJB", nil),
-															 NSLocalizedString(@"It appears that we are already connected. Do you want to try to connect again?", nil),
-															 NSLocalizedString(@"No", nil),
-															 NSLocalizedString(@"Yes", nil), nil);
-	if (result == NSAlertDefaultReturn)
+	NSAlert *connectAlert = [[NSAlert alloc] init];
+	[connectAlert setMessageText:NSLocalizedString(@"Connect to NJB", nil)];
+	[connectAlert setInformativeText:NSLocalizedString(@"It appears that we are already connected. Do you want to try to connect again?", nil)];
+	[connectAlert addButtonWithTitle:NSLocalizedString(@"No", nil)];
+	[connectAlert addButtonWithTitle:NSLocalizedString(@"Yes", nil)];
+	NSModalResponse result = [connectAlert runModal];
+	[connectAlert release];
+	if (result == NSAlertFirstButtonReturn)
 		return;
 	[self connectToNJB];
 }
