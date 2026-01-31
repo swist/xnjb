@@ -736,7 +736,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				797954D0142E05A200FDA262 /* libtaglib.a in Frameworks */,
-				797954D1142E05A200FDA262 /* libusb.a in Frameworks */,
 				8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */,
 				7936C0B006B6C67200C6514A /* IOKit.framework in Frameworks */,
 				7987CE0806F5D428000FF83F /* libz.1.dylib in Frameworks */,
@@ -1551,7 +1550,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				793B6E0308255D8500A43F5B /* PBXTargetDependency */,
 				797407B70F6BDE8B0075149C /* PBXTargetDependency */,
 			);
 			name = XNJB;
@@ -1916,7 +1914,7 @@
 		793A84000D2FB03C00076F70 /* Development */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD)";
+				ARCHS = arm64;
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(FRAMEWORK_SEARCH_PATHS)",
@@ -1935,18 +1933,28 @@
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = NO;
 				GCC_WARN_FOUR_CHARACTER_CONSTANTS = NO;
 				GCC_WARN_UNKNOWN_PRAGMAS = NO;
-				HEADER_SEARCH_PATHS = src;
+				HEADER_SEARCH_PATHS = (
+					src,
+					/opt/homebrew/opt/libusb-compat/include,
+					"$(SRCROOT)/libmtp",
+					"$(SRCROOT)/libmtp/src",
+				);
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Applications";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/build/Development\"",
+					/opt/homebrew/opt/libusb-compat/lib,
+					/opt/homebrew/opt/libusb/lib,
 				);
 				LIBRARY_STYLE = STATIC;
 				MACOSX_DEPLOYMENT_TARGET = 26.0;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_CFLAGS = "-DHAVE_ICONV";
-				OTHER_LDFLAGS = "";
+				OTHER_LDFLAGS = (
+					"-lusb",
+					"-lusb-1.0",
+				);
 				PRODUCT_NAME = XNJB;
 				SDKROOT = macosx;
 				SECTORDER_FLAGS = "";
@@ -2063,17 +2071,27 @@
 				GCC_WARN_FOUR_CHARACTER_CONSTANTS = NO;
 				GCC_WARN_TYPECHECK_CALLS_TO_PRINTF = YES;
 				GCC_WARN_UNKNOWN_PRAGMAS = NO;
-				HEADER_SEARCH_PATHS = src;
+				HEADER_SEARCH_PATHS = (
+					src,
+					/opt/homebrew/opt/libusb-compat/include,
+					"$(SRCROOT)/libmtp",
+					"$(SRCROOT)/libmtp/src",
+				);
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Applications";
 				LIBRARY_SEARCH_PATHS = (
 					"\"$(SRCROOT)/build/Deployment Debug\"",
 					"\"$(SRCROOT)/build/Development\"",
+					/opt/homebrew/opt/libusb-compat/lib,
+					/opt/homebrew/opt/libusb/lib,
 				);
 				LIBRARY_STYLE = STATIC;
 				MACOSX_DEPLOYMENT_TARGET = 26.0;
 				OTHER_CFLAGS = "-DHAVE_ICONV";
-				OTHER_LDFLAGS = "";
+				OTHER_LDFLAGS = (
+					"-lusb",
+					"-lusb-1.0",
+				);
 				PRODUCT_NAME = XNJB;
 				SECTORDER_FLAGS = "";
 				STRIP_INSTALLED_PRODUCT = YES;
@@ -2106,16 +2124,26 @@
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = NO;
 				GCC_WARN_FOUR_CHARACTER_CONSTANTS = NO;
 				GCC_WARN_UNKNOWN_PRAGMAS = NO;
-				HEADER_SEARCH_PATHS = "";
+				HEADER_SEARCH_PATHS = (
+					src,
+					/opt/homebrew/opt/libusb-compat/include,
+					"$(SRCROOT)/libmtp",
+					"$(SRCROOT)/libmtp/src",
+				);
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Applications";
 				LIBRARY_SEARCH_PATHS = (
 					"\"$(SRCROOT)/build/Deployment Debug\"",
 					"\"$(SRCROOT)/build/Development\"",
+					/opt/homebrew/opt/libusb-compat/lib,
+					/opt/homebrew/opt/libusb/lib,
 				);
 				MACOSX_DEPLOYMENT_TARGET = 26.0;
-				OTHER_CFLAGS = "";
-				OTHER_LDFLAGS = "";
+				OTHER_CFLAGS = "-DHAVE_ICONV";
+				OTHER_LDFLAGS = (
+					"-lusb",
+					"-lusb-1.0",
+				);
 				PRODUCT_NAME = XNJB;
 				SECTORDER_FLAGS = "";
 				USER_HEADER_SEARCH_PATHS = "\"$(SRCROOT)/build/Deployment Debug\" \"$(SRCROOT)/build/Development\"";
@@ -2207,12 +2235,19 @@
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = NO;
 				GCC_WARN_FOUR_CHARACTER_CONSTANTS = NO;
 				GCC_WARN_UNKNOWN_PRAGMAS = NO;
-				HEADER_SEARCH_PATHS = src;
+				HEADER_SEARCH_PATHS = (
+					src,
+					/opt/homebrew/opt/libusb-compat/include,
+					"$(SRCROOT)/libmtp",
+					"$(SRCROOT)/libmtp/src",
+				);
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Applications";
 				LIBRARY_SEARCH_PATHS = (
 					"\"$(SRCROOT)/build/Deployment Debug\"",
 					"\"$(SRCROOT)/build/Development\"",
+					/opt/homebrew/opt/libusb-compat/lib,
+					/opt/homebrew/opt/libusb/lib,
 				);
 				LIBRARY_STYLE = STATIC;
 				MACOSX_DEPLOYMENT_TARGET = 26.0;
@@ -2220,7 +2255,10 @@
 					"-DXNJB_LIBMTP_DEBUG",
 					"-DHAVE_ICONV",
 				);
-				OTHER_LDFLAGS = "";
+				OTHER_LDFLAGS = (
+					"-lusb",
+					"-lusb-1.0",
+				);
 				PRODUCT_NAME = XNJB;
 				SECTORDER_FLAGS = "";
 				USER_HEADER_SEARCH_PATHS = "\"$(SRCROOT)/build/Deployment Debug\" \"$(SRCROOT)/build/Development\"";

@@ -6,28 +6,50 @@
 //
 
 #import "UnicodeWrapper.h"
-#include "unicode.h"
+#import <Foundation/Foundation.h>
 
 @implementation UnicodeWrapper
 
 + (NSString *)stringFromUTF16:(unsigned short *)uni
 {
-	char *utf8 = g_utf16_to_utf8(uni, -1, NULL, NULL);
-	if (utf8 == NULL)
+	if (uni == NULL)
 		return nil;
-	NSString *stringUTF8 = [NSString stringWithUTF8String:utf8];
-	free(utf8);
-	return stringUTF8;
+
+	// Calculate length of the UTF-16 string (null-terminated)
+	int length = 0;
+	while (uni[length] != 0) {
+		length++;
+	}
+
+	// Use NSString's built-in UTF-16 support
+	NSString *result = [[NSString alloc] initWithBytes:uni
+	                                            length:length * sizeof(unsigned short)
+	                                          encoding:NSUTF16LittleEndianStringEncoding];
+	return result;
 }
 
 // the return must be freed using free()
 // as of version 1.1.4 we don't do any endian swapping-just return the short as we should
 + (unsigned short *)UTF16FromString:(NSString *)str
 {
-	const char *uni = [str UTF8String];
-	unsigned short *uniShort = g_utf8_to_utf16(uni, -1, NULL, NULL);
-		
-	return uniShort;
+	if (str == nil)
+		return NULL;
+
+	// Get the UTF-16 representation
+	NSUInteger length = [str length];
+
+	// Allocate buffer for UTF-16 string plus null terminator
+	unsigned short *buffer = (unsigned short *)malloc((length + 1) * sizeof(unsigned short));
+	if (buffer == NULL)
+		return NULL;
+
+	// Get the UTF-16 characters
+	[str getCharacters:buffer range:NSMakeRange(0, length)];
+
+	// Null terminate
+	buffer[length] = 0;
+
+	return buffer;
 }
 
 @end
