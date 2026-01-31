@@ -1503,23 +1503,6 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		793B6DEF08255CCC00A43F5B /* usb */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 79486337085DDBD7006A5794 /* Build configuration list for PBXNativeTarget "usb" */;
-			buildPhases = (
-				793B6DEC08255CCC00A43F5B /* Headers */,
-				793B6DED08255CCC00A43F5B /* Sources */,
-				793B6DEE08255CCC00A43F5B /* Frameworks */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = usb;
-			productName = usb;
-			productReference = 793B6DF008255CCC00A43F5B /* libusb.a */;
-			productType = "com.apple.product-type.library.static";
-		};
 		797407110F6BDC3A0075149C /* taglib */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 797407A20F6BDC480075149C /* Build configuration list for PBXNativeTarget "taglib" */;
@@ -1589,7 +1572,6 @@
 			projectRoot = "";
 			targets = (
 				8D1107260486CEB800E47090 /* XNJB */,
-				793B6DEF08255CCC00A43F5B /* usb */,
 				797407110F6BDC3A0075149C /* taglib */,
 			);
 		};
@@ -2417,17 +2399,6 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		79486337085DDBD7006A5794 /* Build configuration list for PBXNativeTarget "usb" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				79486339085DDBD7006A5794 /* Deployment */,
-				79553DD60C52270700ACA792 /* Deployment Debug */,
-				793A84010D2FB03C00076F70 /* Development */,
-				7948633A085DDBD7006A5794 /* Default */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Default;
-		};
 		7948633F085DDBD7006A5794 /* Build configuration list for PBXNativeTarget "XNJB" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
