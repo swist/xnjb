@@ -27,7 +27,6 @@
 #import "NJBQueueConsumer.h"
 #include "usb.h"
 #include "libusb-glue.h"
-#include "usbi.h"
 #include <CoreFoundation/CoreFoundation.h>
 #include <IOKit/IOKitLib.h>
 #include <IOKit/IOCFPlugIn.h>
