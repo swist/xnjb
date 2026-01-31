@@ -36,9 +36,9 @@
 - (NJBTransactionResult *)downloadSettings;
 - (NJBTransactionResult *)updateDisplay;
 - (void)setOwnerString:(NSString *)newOwnerString;
-- (void)setJukeboxTime:(NSCalendarDate *)newJukeboxTime;
+- (void)setJukeboxTime:(NSDate *)newJukeboxTime;
 - (void)updateJukeboxTime:(NSTimer *)aTimer;
-- (NSCalendarDate *)jukeboxTime;
+- (NSDate *)jukeboxTime;
 - (void)startTimer;
 - (void)stopTimer;
 //- (void)openPanelDidEnd:(NSOpenPanel *)sheet returnCode:(int)returnCode contextInfo:(void *)contextInfo;

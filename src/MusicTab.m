@@ -555,10 +555,12 @@
 	// if we made an error loading it then give up
 	if (iTunesDict == nil)
 	{
-		NSRunAlertPanel(NSLocalizedString(@"iTunes Library", nil), 
-										[NSString stringWithFormat:@"%@ '%@'", NSLocalizedString(@"Could not load iTunes library from", nil), iTunesLibrary],
-										NSLocalizedString(@"OK", nil),
-										nil, nil);
+		NSAlert *itunesAlert = [[NSAlert alloc] init];
+		[itunesAlert setMessageText:NSLocalizedString(@"iTunes Library", nil)];
+		[itunesAlert setInformativeText:[NSString stringWithFormat:@"%@ '%@'", NSLocalizedString(@"Could not load iTunes library from", nil), iTunesLibrary]];
+		[itunesAlert addButtonWithTitle:NSLocalizedString(@"OK", nil)];
+		[itunesAlert runModal];
+		[itunesAlert release];
 		return;
 	}
   
@@ -649,7 +651,7 @@
 		[track setTrackNumber:[[thisTrackDict valueForKey:@"Track Number"] unsignedIntValue]];
     
     // don't trust iTunes filesize - it might have changed
-    NSDictionary *attributes = [manager fileAttributesAtPath:[track fullPath] traverseLink:YES];
+    NSDictionary *attributes = [manager attributesOfItemAtPath:[track fullPath] error:nil];
     [track setFilesize:[[attributes objectForKey:NSFileSize] unsignedLongLongValue]];
     
     [track setDateAdded:[thisTrackDict valueForKey:@"Date Added"]];

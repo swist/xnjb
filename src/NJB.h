@@ -72,7 +72,7 @@
 - (NJBTransactionResult *)deleteFile:(MyItem *)file fromDir:(Directory *)parentDir;
 - (unsigned long long)totalDiskSpace;
 - (unsigned long long)freeDiskSpace;
-- (NSCalendarDate *)jukeboxTime;
+- (NSDate *)jukeboxTime;
 - (BOOL)isProtocol3Device;
 - (NJBTransactionResult *)setOwnerString:(NSString *)owner;
 - (NJBTransactionResult *)setBitmap:(NSString *)bitmapPath;

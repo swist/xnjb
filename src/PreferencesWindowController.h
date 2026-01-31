@@ -42,8 +42,6 @@
 	BOOL isDirty;
 }
 - (void)setStateForButton:(NSButton *)button fromBool:(BOOL)state;
-- (void)changeMusicTabDirPanelDidEnd:(NSOpenPanel *)openPanel returnCode:(int)returnCode contextInfo:(void *)x;
-- (void)changeDataTabDirPanelDidEnd:(NSOpenPanel *)openPanel returnCode:(int)returnCode contextInfo:(void *)x;
 - (BOOL)boolForButton:(NSButton *)button;
 - (void)setPreferences:(Preferences *)newPreferences;
 - (void)setTabView:(NSTabView *)newTabView;

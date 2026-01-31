@@ -46,12 +46,12 @@
 	if ([preferences showDrawer])
 	{
 		[drawerWindow openOnEdge:[preferences drawerEdge]];
-		[toggleButton setState:NSOnState];
+		[toggleButton setState:NSControlStateValueOn];
 	}
 	else
 	{
 		[drawerWindow close];
-		[toggleButton setState:NSOffState];
+		[toggleButton setState:NSControlStateValueOff];
 	}
 	
 	[self disableAll];
@@ -60,7 +60,7 @@
 - (void)drawerDidClose:(NSNotification*)notification
 {
   // change the toggle button to off
-  [toggleButton setState:NSOffState];
+  [toggleButton setState:NSControlStateValueOff];
 	// don't save drawer edge so opens on sensible side
 }
 

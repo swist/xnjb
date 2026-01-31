@@ -324,11 +324,14 @@
  */
 - (IBAction)deletePlaylist:(id)sender
 {
-	int result = NSRunAlertPanel(NSLocalizedString(@"Playlist Deletion", nil),
-															 NSLocalizedString(@"Are you sure you want to delete the selected playlist off the NJB?", nil),
-															 NSLocalizedString(@"No", nil),
-															 NSLocalizedString(@"Yes", nil), nil);
-	if (result == NSAlertDefaultReturn)
+	NSAlert *alert = [[NSAlert alloc] init];
+	[alert setMessageText:NSLocalizedString(@"Playlist Deletion", nil)];
+	[alert setInformativeText:NSLocalizedString(@"Are you sure you want to delete the selected playlist off the NJB?", nil)];
+	[alert addButtonWithTitle:NSLocalizedString(@"No", nil)];
+	[alert addButtonWithTitle:NSLocalizedString(@"Yes", nil)];
+	NSModalResponse result = [alert runModal];
+	[alert release];
+	if (result == NSAlertFirstButtonReturn)
 		return;
 	
 	int row = [playlistsTable selectedRow];

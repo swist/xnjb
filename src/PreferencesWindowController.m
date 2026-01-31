@@ -161,21 +161,21 @@
 	isDirty = NO;
 }
 
-/* Sets the button state mapping YES->NSOnState, NO->NSOffState
+/* Sets the button state mapping YES->NSControlStateValueOn, NO->NSControlStateValueOff
  */
 - (void)setStateForButton:(NSButton *)button fromBool:(BOOL)state
 {
 	if (state)
-		[button setState:NSOnState];
+		[button setState:NSControlStateValueOn];
 	else
-		[button setState:NSOffState];
+		[button setState:NSControlStateValueOff];
 }
 
 /* reverse of setStateForButton:
  */
 - (BOOL)boolForButton:(NSButton *)button
 {
-	if ([button state] == NSOnState)
+	if ([button state] == NSControlStateValueOn)
 		return YES;
 	else
 		return NO;
@@ -198,21 +198,21 @@
 	[preferences setConnectOnStartup:[self boolForButton:connectOnStartup]];
 	[preferences setWriteTagAfterCopy:[self boolForButton:writeTagAfterCopy]];
 	[preferences setTurbo:[self boolForButton:enableTurbo]];
-	if ([startupTabLastUsed state] == NSOnState)
+	if ([startupTabLastUsed state] == NSControlStateValueOn)
 		[preferences setStartupTabLastUsed:YES];
 	else
 	{
 		[preferences setStartupTabLastUsed:NO];
 		[preferences setStartupTab:[startupTab indexOfSelectedItem]];
 	}
-	if ([musicTabDirLastUsed state] == NSOnState)
+	if ([musicTabDirLastUsed state] == NSControlStateValueOn)
 		[preferences setMusicTabDirLastUsed:YES];
 	else
 	{
 		[preferences setMusicTabDirLastUsed:NO];
 		[preferences setMusicTabDir:[musicTabDir stringValue]];
 	}
-	if ([dataTabDirLastUsed state] == NSOnState)
+	if ([dataTabDirLastUsed state] == NSControlStateValueOn)
 		[preferences setDataTabDirLastUsed:YES];
 	else
 	{
@@ -226,7 +226,7 @@
 	[preferences setTitleTol:[duplicatesTitleTol intValue]];
 	[preferences setArtistTol:[duplicatesArtistTol intValue]];
 	
-	if ([iTunesIntegration state] == NSOnState)
+	if ([iTunesIntegration state] == NSControlStateValueOn)
 	{
 		[preferences setiTunesIntegration:YES];
 		[preferences setDownloadDir:[downloadedTrackDir stringValue]];
@@ -265,22 +265,14 @@
 	[panel setCanChooseFiles:NO];
 	[panel setCanChooseDirectories:YES];
 	
-	[panel beginSheetForDirectory:[musicTabDir stringValue]
-													 file:nil
-													types:nil
-								 modalForWindow:[self window]
-									modalDelegate:self
-								 didEndSelector:@selector(changeMusicTabDirPanelDidEnd:returnCode:contextInfo:)
-										contextInfo:NULL];
-}
-
-- (void)changeMusicTabDirPanelDidEnd:(NSOpenPanel *)openPanel returnCode:(int)returnCode contextInfo:(void *)x
-{
-	if (returnCode == NSOKButton)
-	{
-		[musicTabDir setStringValue:[openPanel filename]];
-		isDirty = YES;
-	}
+	[panel setDirectoryURL:[NSURL fileURLWithPath:[musicTabDir stringValue]]];
+	[panel beginSheetModalForWindow:[self window] completionHandler:^(NSModalResponse returnCode) {
+		if (returnCode == NSModalResponseOK)
+		{
+			[musicTabDir setStringValue:[[panel URL] path]];
+			isDirty = YES;
+		}
+	}];
 }
 
 /* Show open panel to choose a new Data tab directory
@@ -292,27 +284,19 @@
 	[panel setCanChooseFiles:NO];
 	[panel setCanChooseDirectories:YES];
 	
-	[panel beginSheetForDirectory:[dataTabDir stringValue]
-													 file:nil
-													types:nil
-								 modalForWindow:[self window]
-									modalDelegate:self
-								 didEndSelector:@selector(changeDataTabDirPanelDidEnd:returnCode:contextInfo:)
-										contextInfo:NULL];
-}
-
-- (void)changeDataTabDirPanelDidEnd:(NSOpenPanel *)openPanel returnCode:(int)returnCode contextInfo:(void *)x
-{
-	if (returnCode == NSOKButton)
-	{
-		[dataTabDir setStringValue:[openPanel filename]];
-		isDirty = YES;
-	}
+	[panel setDirectoryURL:[NSURL fileURLWithPath:[dataTabDir stringValue]]];
+	[panel beginSheetModalForWindow:[self window] completionHandler:^(NSModalResponse returnCode) {
+		if (returnCode == NSModalResponseOK)
+		{
+			[dataTabDir setStringValue:[[panel URL] path]];
+			isDirty = YES;
+		}
+	}];
 }
 
 - (IBAction)startupTabLastUsed:(id)sender
 {
-	if ([startupTabLastUsed state] == NSOnState)
+	if ([startupTabLastUsed state] == NSControlStateValueOn)
 		[startupTab setEnabled:NO];
 	else
 	{
@@ -326,7 +310,7 @@
 
 - (IBAction)musicTabDirLastUsed:(id)sender
 {
-	if ([musicTabDirLastUsed state] == NSOnState)
+	if ([musicTabDirLastUsed state] == NSControlStateValueOn)
 	{
 		[musicTabDir setEnabled:NO];
 		[changeMusicTabDir setEnabled:NO];
@@ -341,7 +325,7 @@
 
 - (IBAction)dataTabDirLastUsed:(id)sender
 {
-	if ([dataTabDirLastUsed state] == NSOnState)
+	if ([dataTabDirLastUsed state] == NSControlStateValueOn)
 	{	
 		[dataTabDir setEnabled:NO];
 		[changeDataTabDir setEnabled:NO];
@@ -354,12 +338,12 @@
 	isDirty = YES;
 }
 
-- (int)numberOfItemsInComboBox:(NSComboBox *)aComboBox
+- (NSInteger)numberOfItemsInComboBox:(NSComboBox *)aComboBox
 {
 	return [tabView numberOfTabViewItems];
 }
 
-- (id)comboBox:(NSComboBox *)aComboBox objectValueForItemAtIndex:(int)index
+- (id)comboBox:(NSComboBox *)aComboBox objectValueForItemAtIndex:(NSInteger)index
 {
 	return [[tabView tabViewItemAtIndex:index] label];
 }
@@ -368,18 +352,21 @@
 {
 	if ([self isDirty])
 	{
-		int result = NSRunAlertPanel(NSLocalizedString(@"Save Preferences", nil),
-																 NSLocalizedString(@"Do you want to save changes to preferences?", nil),
-																 NSLocalizedString(@"Yes", nil),
-																 NSLocalizedString(@"No", nil),
-																 NSLocalizedString(@"Cancel", nil));
-		if (result == NSAlertDefaultReturn)
+		NSAlert *alert = [[NSAlert alloc] init];
+		[alert setMessageText:NSLocalizedString(@"Save Preferences", nil)];
+		[alert setInformativeText:NSLocalizedString(@"Do you want to save changes to preferences?", nil)];
+		[alert addButtonWithTitle:NSLocalizedString(@"Yes", nil)];
+		[alert addButtonWithTitle:NSLocalizedString(@"No", nil)];
+		[alert addButtonWithTitle:NSLocalizedString(@"Cancel", nil)];
+		NSModalResponse result = [alert runModal];
+		[alert release];
+		if (result == NSAlertFirstButtonReturn)
 		{
 			// Yes
 			[self buttonOK:sender];
 			return YES;
 		}
-		else if (result == NSAlertAlternateReturn)
+		else if (result == NSAlertSecondButtonReturn)
 		{
 			// No
 			return YES;
@@ -422,7 +409,7 @@
 - (IBAction)createAlbumFiles:(id)sender
 {
 	isDirty = YES;
-  if ([createAlbumFiles state] == NSOnState)
+  if ([createAlbumFiles state] == NSControlStateValueOn)
   {
     [uploadAlbumArt setEnabled:YES];
     [self uploadAlbumArt:sender];
@@ -438,7 +425,7 @@
 - (IBAction)uploadAlbumArt:(id)sender
 {
 	isDirty = YES;
-  if ([uploadAlbumArt state] == NSOnState)
+  if ([uploadAlbumArt state] == NSControlStateValueOn)
   {
     [albumArtHeight setEnabled:YES];
     [albumArtWidth setEnabled:YES];
@@ -465,7 +452,7 @@
 
 - (IBAction)iTunesIntegration:(id)sender
 {
-	if ([iTunesIntegration state] == NSOnState)
+	if ([iTunesIntegration state] == NSControlStateValueOn)
 	{	
 		[downloadedTrackDir setEnabled:YES];
 		[iTunesDirectory setEnabled:YES];

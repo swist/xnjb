@@ -20,7 +20,7 @@
   [dataFile fileTypeFromExtension];
   
 	NSFileManager *fileManager = [[NSFileManager alloc] init];
-	NSDictionary *fileAttributes = [fileManager fileAttributesAtPath:path traverseLink:YES];
+	NSDictionary *fileAttributes = [fileManager attributesOfItemAtPath:path error:nil];
 	if (fileAttributes == nil)
 	{
 		NSLog(@"Cannot read file %@", path);
